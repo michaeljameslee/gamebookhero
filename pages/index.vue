@@ -1,19 +1,25 @@
 <template>
   <div class="container">
-    <Navbar />Heroes (Home)
+    <Navbar />
     <div>
-      <nuxt-link to="/hero/destiny-quest/42" class="navbar-item"
-        >Hero 42</nuxt-link
-      >
+      <div v-for="hero in heroes" :key="hero.id">
+        <nuxt-link :to="'/hero/' + hero.type + '/' + hero.id">
+          {{ hero.name }}
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar'
 export default {
   components: {
     Navbar
+  },
+  computed: {
+    ...mapGetters({ heroes: 'heroes/heroes' })
   }
 }
 </script>
