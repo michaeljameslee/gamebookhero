@@ -3,8 +3,9 @@
     <Navbar />
     <div>
       <div v-for="hero in heroes" :key="hero.id">
-        <nuxt-link :to="'/hero/' + hero.type + '/' + hero.id">
-          {{ hero.name }}
+        <nuxt-link :to="'/hero/' + hero.gamebook + '/' + hero.id">
+          {{ hero.id }} : {{ hero.name }} :
+          {{ hero.gamebook }}
         </nuxt-link>
       </div>
     </div>
@@ -16,11 +17,11 @@ import { mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar'
 export default {
   components: {
-    Navbar
+    Navbar,
   },
   computed: {
-    ...mapGetters({ heroes: 'heroes/heroes' })
-  }
+    ...mapGetters({ heroes: 'account/heroes' }),
+  },
 }
 </script>
 

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Navbar />
+    <div>Hero id: {{ heroId }}</div>
     <div>CHARACTER STATS CARD</div>
     <div>THE SORCERER'S CROWN</div>
     <div>NAME: {{ hero.name }}</div>
@@ -36,20 +37,22 @@ import { mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar'
 export default {
   components: {
-    Navbar
+    Navbar,
   },
   computed: {
-    ...mapGetters({ heroById: 'heroes/heroById' }),
-    hero() {
-      return this.heroById(this.$route.params.id.toString())
-    }
+    ...mapGetters({
+      hero: 'addag-the-sorcerers-crown/hero',
+    }),
+    heroId() {
+      return this.$route.params.id.toString()
+    },
   },
   methods: {
     rollHitpoints() {
       // roll 4d6 and take the two highest + 6
       return 1
-    }
-  }
+    },
+  },
 }
 </script>
 
