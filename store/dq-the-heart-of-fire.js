@@ -24,7 +24,6 @@ export const state = () => ({
       'ring 1',
       'ring 2',
     ],
-    equipmentItems: [],
     backpackItems: [], // strings
     moneyPouch: '',
     notes: '',
@@ -43,12 +42,45 @@ export const state = () => ({
     name: '',
     modifier: 0,
   },
+  equipmentItems: [
+    {
+      slot: 'cloak',
+      name: 'Shadow mantle',
+      attributeBonuses: [
+        {
+          name: 'speed',
+          modifier: 2,
+        },
+        {
+          name: 'brawn',
+          modifier: 3,
+        },
+      ],
+      abilities: ['Vanish'],
+    },
+    {
+      slot: 'head',
+      name: 'Cowl of the Sabbat',
+      attributeBonuses: [
+        {
+          name: 'kelly',
+          modifier: 2,
+        },
+        {
+          name: 'brawn',
+          modifier: 3,
+        },
+      ],
+      abilities: ['Vanish'],
+    },
+  ],
 })
 
 export const mutations = {}
 
 export const getters = {
   hero: state => state.hero,
+  equipmentItems: state => state.equipmentItems,
   abilitiesSpeed: state =>
     state.equipmentItems.reduce((items, item) => {
       return items.concat(

@@ -18,6 +18,7 @@
           <div class="tile is-child is-4">
             <div class="rustic-box equipment-box">
               <span class="dq-label">CLOAK</span>
+              <EquipmentItem :item="getEquipmentItem('head')" />
             </div>
           </div>
           <div class="tile is-child is-4">
@@ -59,6 +60,7 @@
               <div class="tile is-child">
                 <div class="rustic-box attribute-box">
                   <span class="dq-label">BRAWN</span>
+                  <div class="dq-attribute">{{ hero.brawn }}</div>
                 </div>
               </div>
             </div>
@@ -71,11 +73,13 @@
               <div class="tile is-child">
                 <div class="rustic-box attribute-box">
                   <span class="dq-label">MAGIC</span>
+                  <div class="dq-attribute">{{ hero.magic }}</div>
                 </div>
               </div>
               <div class="tile is-child">
                 <div class="rustic-box attribute-box">
                   <span class="dq-label">ARMOR</span>
+                  <div class="dq-attribute">{{ hero.armor }}</div>
                 </div>
               </div>
             </div>
@@ -88,11 +92,13 @@
               <div class="tile is-child">
                 <div class="rustic-box attribute-box">
                   <span class="dq-label">HEALTH</span>
+                  <div class="dq-attribute">{{ hero.health }}</div>
                 </div>
               </div>
               <div class="tile is-child">
                 <div class="rustic-box attribute-box">
                   <span class="dq-label">MAX</span>
+                  <div class="dq-attribute">{{ hero.healthMax }}</div>
                 </div>
               </div>
             </div>
@@ -150,19 +156,25 @@
 <script>
 import { mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar'
+import EquipmentItem from '~/components/dq/EquipmentItem'
 export default {
   components: {
     Navbar,
+    EquipmentItem,
   },
   computed: {
     ...mapGetters({
       hero: 'dq-the-heart-of-fire/hero',
+      equipmentItems: 'dq-the-heart-of-fire/equipmentItems',
     }),
     heroId() {
       return this.$route.params.id.toString()
     },
   },
   methods: {
+    getEquipmentItem(slot) {
+      return this.equipmentItems.find(item => item.slot === slot)
+    },
     rollHitpoints() {
       // roll 4d6 and take the two highest + 6
       return 1
